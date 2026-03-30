@@ -1,4 +1,7 @@
 import React from "react";
+import { FaInstagram } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
+
 
 export default function Footer() {
     return (
@@ -8,14 +11,14 @@ export default function Footer() {
                 <div className="flex justify-center lg:justify-start">
                     <img
                         className="w-40 h-24 object-contain"
-                        src="images/logos/vastrinfooter.svg"
+                        src="/images/logos/vastrinfooter.svg"
                         alt="Vastrin Logo"
                     />
                 </div>
 
                 {/* Collections */}
                 <div className="flex flex-col items-center lg:items-start gap-4 text-center lg:text-left">
-                    <h2 className="text-white text-xl md:text-2xl font-bold font-['Archivo'] uppercase tracking-[2.40px]">
+                    <h2 className="text-white text-xl md:text-2xl font-bold font-archivo uppercase tracking-[2.40px]">
                         Collections
                     </h2>
                     <ul className="flex flex-col gap-2">
@@ -40,8 +43,9 @@ export default function Footer() {
                             Follow Us on
                         </span>
                         <div className="flex gap-5 justify-center lg:justify-start">
-                            <div className="w-6 h-6 bg-white rounded-sm cursor-pointer hover:bg-gray-200 transition-colors"></div>
-                            <div className="w-6 h-6 bg-white rounded-sm cursor-pointer hover:bg-gray-200 transition-colors"></div>
+                            <a href="https://www.instagram.com">  <FaInstagram className="text-[#ffffff]" size={23} /></a>
+                            <a href="https://www.facebook.com">  <FaFacebook className="text-[#ffffff]" size={23} /></a>
+
                         </div>
                     </div>
                 </div>
@@ -77,7 +81,7 @@ export default function Footer() {
                     <p className="text-gray-200 text-sm font-bold font-['Inknut_Antiqua'] max-w-xs">
                         Sign up now for exclusive deals, the latest drops, and style inspiration!
                     </p>
-                    <div className="flex flex-col w-full max-w-[200px] gap-2 mt-2">
+                    <div className="flex flex-col w-full max-w-sm gap-2 mt-2">
                         <input
                             type="email"
                             placeholder="Email"

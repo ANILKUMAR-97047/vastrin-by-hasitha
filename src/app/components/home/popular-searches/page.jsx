@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import { MessageCircle } from 'lucide-react'; // Optional: npm install lucide-react
 
 const searchData = [
     {
@@ -70,19 +69,6 @@ export default function PopularSearches() {
                         </div>
                     ))}
                 </div>
-
-                {/* Floating WhatsApp Button */}
-                <a
-                    href="https://wa.me/your-number"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="fixed bottom-8 right-8 z-50 flex items-center gap-2 bg-[#4c6a3d] hover:bg-[#3e5632] text-white px-4 py-2 rounded-md shadow-lg transition-all transform hover:scale-105 active:scale-95"
-                >
-                    <div className="bg-white rounded-full p-1">
-                        <MessageCircle className="text-[#4c6a3d] w-5 h-5 fill-current" />
-                    </div>
-                    <span className="font-bold text-sm tracking-wide">Chat With Us</span>
-                </a>
 
             </div>
         </section>

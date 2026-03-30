@@ -1,12 +1,12 @@
 "use client";
 import React, { useState, useMemo } from 'react';
 import ProductCard from '../shared/ProductCard';
-import PopularSearches from '../home/popular-searches/page';
 import Pagination from '../shared/Pagination';
 import { FiGrid } from "react-icons/fi";
 import { MdOutlineKeyboardArrowDown, MdClose } from "react-icons/md";
+import { MessageCircle } from 'lucide-react';
 
-export default function CollectionLayout({ title, products, breadcrumbs, seoParagraphs }) {
+export default function CollectionLayout({ title, products, breadcrumbs, seoParagraphs, para1, para2, author }) {
     const [sortOption, setSortOption] = useState('default');
     const [isSortOpen, setIsSortOpen] = useState(false);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -38,7 +38,7 @@ export default function CollectionLayout({ title, products, breadcrumbs, seoPara
     return (
         <React.Fragment>
             {/* Top Toolbar */}
-            <div className="w-full bg-[#fdf2f2] border-b border-pink-100 py-4 px-6 md:px-12 flex justify-between items-center font-inknut text-sm relative z-20">
+            <div className="w-full bg-[#fdf2f2] border-b border-b-gray-400 py-4 px-6 md:px-12 flex justify-between items-center font-inknut text-sm relative z-20">
                 <div className="flex items-center text-gray-800 cursor-pointer hover:text-[#FC6C85] transition-colors">
                     <FiGrid size={22} />
                 </div>
@@ -174,24 +174,30 @@ export default function CollectionLayout({ title, products, breadcrumbs, seoPara
                             {title}
                         </h1>
 
-                        <div className="flex flex-col gap-10 font-inria text-[19px] text-gray-900 leading-[2.2] text-left bg-transparent">
-                            {seoParagraphs.map((para, idx) => {
-                                const isLastPara = idx === seoParagraphs.length - 1;
-                                const alignClass = isLastPara ? "text-center mt-6" : "text-left";
+                        <div className="flex flex-col gap-10 font-inria text-[19px] text-gray-900 leading-[2.2] bg-transparent">
+                            {/* Paragraph 1 */}
+                            {para1 && (
+                                <p className="text-left w-full">{para1}</p>
+                            )}
 
-                                // Extract brand name highlight safely
-                                if (para.includes('Vastrin by Hasitha.')) {
-                                    const parts = para.split('Vastrin by Hasitha.');
-                                    return (
-                                        <p key={idx} className={alignClass}>
-                                            {parts[0]}
-                                            <span className="text-[#FC6C85] font-bold">Vastrin by Hasitha.</span>
-                                            {parts[1]}
-                                        </p>
-                                    );
-                                }
-                                return <p key={idx} className={alignClass}>{para}</p>;
-                            })}
+                            {/* Paragraph 2 */}
+                            {para2 && (
+                                <p className="text-left w-full">{para2}</p>
+                            )}
+
+                            {/* Author Quote (Automatically Centers and Highlights "Vastrin by Hasitha") */}
+                            {author && (
+                                <p className="text-center mt-6 w-full">
+                                    {author.split('Vastrin by Hasitha.').map((part, index, arr) => (
+                                        <React.Fragment key={index}>
+                                            {part}
+                                            {index < arr.length - 1 && (
+                                                <span className="text-[#FC6C85] font-bold">Vastrin by Hasitha.</span>
+                                            )}
+                                        </React.Fragment>
+                                    ))}
+                                </p>
+                            )}
                         </div>
 
                         {/* Popular Searches Block Exactly Matched to Image */}
@@ -201,8 +207,13 @@ export default function CollectionLayout({ title, products, breadcrumbs, seoPara
                             </h2>
                         </div>
 
-                        <div className="flex flex-col gap-6 underline font-inria text-[18.5px] text-gray-900 leading-[2.4] tracking-wide text-left">
-                            {seoParagraphs}
+                        {/* Renders the user's flat array of seoParagraphs with matching underline text styles */}
+                        <div className="flex flex-col gap-6 underline underline-offset-4 decoration-solid font-inria text-[18.5px] text-gray-900 leading-[2.6] tracking-wide text-left break-words">
+                            {seoParagraphs.map((paraBlock, idx) => (
+                                <p key={idx} className="w-full">
+                                    {paraBlock}
+                                </p>
+                            ))}
                         </div>
                     </div>
                 </div>

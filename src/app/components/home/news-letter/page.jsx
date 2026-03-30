@@ -10,7 +10,7 @@ export default function Newsletter() {
                 </p>
 
                 {/* Main Heading */}
-                <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-serif tracking-[0.2em] uppercase mb-6">
+                <h2 className="text-white text-[24px] leading-[28px] tracking-[2.16px] font-serif uppercase mb-6">
                     Newsletter
                 </h2>
 

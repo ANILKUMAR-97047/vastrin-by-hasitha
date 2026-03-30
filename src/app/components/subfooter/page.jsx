@@ -5,48 +5,27 @@ export default function SubFooter() {
     {
       title: "Made in India",
       desc: "Our Products truly Made in India",
-      icon: (
-        <div className="w-8 h-8 relative overflow-hidden shrink-0">
-          <div className="w-7 h-6 left-[2.83px] top-[5.67px] absolute outline outline-2 outline-offset-[-1px] outline-white rounded-[1px]" />
-        </div>
-      ),
+      icon: '/images/logos/heart.svg',
     },
     {
       title: "Free Delivery",
       desc: "Get free delivery on all orders.",
-      icon: (
-        <div className="w-8 h-8 relative overflow-hidden shrink-0">
-          <div className="w-8 h-7 left-[1.42px] top-[2.83px] absolute bg-white rounded-[1px]" />
-        </div>
-      ),
+      icon: '/images/logos/transport.svg',
     },
     {
       title: "Easy Returns",
       desc: "Shop confidently with easy returns.",
-      icon: (
-        <div className="w-8 h-8 relative overflow-hidden shrink-0">
-          <div className="w-7 h-7 left-[2.13px] top-[2.13px] absolute outline outline-[1.50px] outline-offset-[-0.75px] outline-white rounded-[2px]" />
-          <div className="w-3 h-2.5 left-[19.13px] top-[6.37px] absolute outline outline-[1.50px] outline-offset-[-0.75px] outline-white rounded-[1px]" />
-        </div>
-      ),
+      icon: '/images/logos/hand.svg',
     },
     {
       title: "Support",
       desc: "Enjoy the best support.",
-      icon: (
-        <div className="w-8 h-8 relative overflow-hidden shrink-0">
-          <div className="w-8 h-8 left-[1.06px] top-[1.06px] absolute outline outline-[1.50px] outline-offset-[-0.75px] outline-white rounded-[2px]" />
-        </div>
-      ),
+      icon: '/images/logos/chat.svg',
     },
     {
       title: "Secure Payments",
       desc: "Secure payments and support.",
-      icon: (
-        <div className="w-8 h-8 relative overflow-hidden shrink-0">
-          <div className="w-7 h-7 left-[5.67px] top-[1.42px] absolute bg-white rounded-[2px]" />
-        </div>
-      ),
+      icon: '/images/logos/secure.svg',
     },
   ];
 
@@ -58,7 +37,7 @@ export default function SubFooter() {
             key={idx}
             className="flex flex-col items-center text-center gap-1.5 w-32 sm:w-40"
           >
-            {feature.icon}
+            <img src={feature.icon} alt={feature.title} />
             <div className="text-white text-sm font-semibold font-['Inknut_Antiqua'] leading-4">
               {feature.title}
             </div>

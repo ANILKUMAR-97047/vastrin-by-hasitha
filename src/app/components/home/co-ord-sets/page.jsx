@@ -51,7 +51,7 @@ const ProductCard = ({ product }) => (
             />
 
             {/* Save Tag */}
-            <div className="absolute top-3 left-0 bg-[#ef4444] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider">
+            <div className="absolute top-3 left-3 bg-[#ef4444] rounded-xs text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider">
                 {product.discount}
             </div>
 

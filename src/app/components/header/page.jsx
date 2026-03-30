@@ -45,7 +45,7 @@ export default function Header() {
                                     className={`font-inknut text-[17px] tracking-[-0.6px] transition-colors ${isActive
                                         ? "text-[#FC6C85] font-semibold underline decoration-solid [text-underline-position:from-font]"
                                         : "text-[#DBA622] font-normal hover:text-[#FC6C85]"
-                                    }`}
+                                        }`}
                                 >
                                     {link.name}
                                 </Link>
@@ -108,7 +108,7 @@ export default function Header() {
                                     className={`block px-3 py-2.5 rounded-md font-['Inknut_Antiqua'] text-[17px] tracking-[-0.6px] ${isActive
                                         ? "text-[#FC6C85] font-semibold underline decoration-solid [text-underline-position:from-font] bg-gray-50"
                                         : "text-[#DBA622] font-normal hover:bg-gray-50 hover:text-[#FC6C85]"
-                                    }`}
+                                        }`}
                                 >
                                     {link.name}
                                 </Link>
@@ -117,16 +117,15 @@ export default function Header() {
                     </div>
 
                     {/* Render icons inside mobile menu ONLY for small mobile devices (since we show them on tablet header) */}
-                    <div className="pt-4 pb-4 border-t border-gray-200 md:hidden">
-                        <div className="flex items-center justify-around px-5">
-                            <img className="w-8 h-8 rounded-full cursor-pointer" src="https://placehold.co/24x24" alt="User Profile" />
-                            <div className="w-7 h-7 relative overflow-hidden cursor-pointer flex items-center justify-center">
-                                <div className="w-6 h-5 absolute outline-2 outline-yellow-500 rounded-[2px]" />
-                            </div>
-                            <div className="w-6 h-6 flex justify-center items-center cursor-pointer">
-                                <div className="w-6 h-6 bg-yellow-500 rounded-[2px]" />
-                            </div>
-                        </div>
+                    <div className='flex gap-3 ml-7 mb-5' >
+                        <img
+                            className="w-[24px] h-[24px] object-fill rounded-full cursor-pointer hover:opacity-80 transition-opacity"
+                            src="/images/logos/profile.png"
+                            alt="User Profile"
+                        />
+                        <IoSearchOutline className='text-[#DBA622]' size={24} />
+                        <GoHeart className='text-[#DBA622]' size={24} />
+                        <PiHandbagSimpleLight className='text-[#DBA622]' size={24} />
                     </div>
                 </div>
             )}

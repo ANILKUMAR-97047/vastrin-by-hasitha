@@ -26,6 +26,9 @@ export default async function CollectionPage({ params }) {
             products={data.products}
             breadcrumbs={data.breadcrumbs}
             seoParagraphs={data.seoParagraphs}
+            para1={data.para1}
+            para2={data.para2}
+            author={data.author}
         />
     );
 }

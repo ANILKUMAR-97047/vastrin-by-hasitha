@@ -35,12 +35,12 @@ export default function BlogPosts() {
       <div className="max-w-7xl mx-auto">
 
         {/* Section Heading */}
-        <h2 className="text-center font-serif text-4xl md:text-5xl font-bold uppercase tracking-[0.2em] text-[#f472b6] mb-16">
+        <h2 className="text-center font-serif text-4xl md:text-5xl lg:text-[32px] font-bold uppercase tracking-[0.2em] text-[#f472b6] mb-16">
           Blog Posts
         </h2>
 
         {/* Grid Container */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 font-inknut">
           {blogs.map((blog) => (
             <article
               key={blog.id}
