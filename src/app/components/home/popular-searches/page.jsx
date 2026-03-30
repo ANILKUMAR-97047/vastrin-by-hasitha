@@ -38,7 +38,6 @@ export default function PopularSearches() {
         <section className="relative bg-[#fdf2f2] py-16 px-6 md:px-12 lg:px-24 border-t border-pink-100">
             <div className="max-w-7xl mx-auto">
 
-                {/* Section Header */}
                 <h2 className="text-[#f472b6] font-bold text-sm md:text-base uppercase tracking-widest mb-10">
                     Popular Searches
                 </h2>

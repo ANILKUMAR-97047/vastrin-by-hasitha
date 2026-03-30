@@ -1,9 +1,9 @@
 "use client";
 import React, { useState, useMemo } from 'react';
 import ProductCard from '../shared/ProductCard';
-import PopularSearches from '../home/popular-searches/page'; 
+import PopularSearches from '../home/popular-searches/page';
 import Pagination from '../shared/Pagination';
-import { FiGrid } from "react-icons/fi"; 
+import { FiGrid } from "react-icons/fi";
 import { MdOutlineKeyboardArrowDown, MdClose } from "react-icons/md";
 
 export default function CollectionLayout({ title, products, breadcrumbs, seoParagraphs }) {
@@ -48,30 +48,30 @@ export default function CollectionLayout({ title, products, breadcrumbs, seoPara
                 <div className="flex items-center gap-6">
                     {/* Sort Dropdown */}
                     <div className="relative">
-                        <div 
+                        <div
                             className="flex items-center gap-1 cursor-pointer text-gray-800 hover:text-[#FC6C85] transition-colors"
                             onClick={() => setIsSortOpen(!isSortOpen)}
                         >
                             <span>Sort By</span>
                             <MdOutlineKeyboardArrowDown size={20} className={isSortOpen ? "rotate-180 transition-transform" : "transition-transform"} />
                         </div>
-                        
+
                         {isSortOpen && (
                             <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-100 shadow-xl rounded-md overflow-hidden z-30 font-inria">
                                 <div className="flex flex-col text-[15px] text-gray-600">
-                                    <button 
+                                    <button
                                         className={`px-4 py-3 text-left hover:bg-pink-50 ${sortOption === 'default' ? 'text-[#FC6C85] font-bold bg-pink-50' : ''}`}
                                         onClick={() => handleSort('default')}
                                     >
                                         Recommended
                                     </button>
-                                    <button 
+                                    <button
                                         className={`px-4 py-3 text-left hover:bg-pink-50 ${sortOption === 'price-low' ? 'text-[#FC6C85] font-bold bg-pink-50' : ''}`}
                                         onClick={() => handleSort('price-low')}
                                     >
                                         Price: Low to High
                                     </button>
-                                    <button 
+                                    <button
                                         className={`px-4 py-3 text-left hover:bg-pink-50 ${sortOption === 'price-high' ? 'text-[#FC6C85] font-bold bg-pink-50' : ''}`}
                                         onClick={() => handleSort('price-high')}
                                     >
@@ -81,9 +81,9 @@ export default function CollectionLayout({ title, products, breadcrumbs, seoPara
                             </div>
                         )}
                     </div>
-                    
+
                     {/* Filter Trigger */}
-                    <div 
+                    <div
                         className="cursor-pointer text-gray-800 hover:text-[#FC6C85] transition-colors"
                         onClick={() => setIsFilterOpen(true)}
                     >
@@ -143,7 +143,7 @@ export default function CollectionLayout({ title, products, breadcrumbs, seoPara
             {/* Main Content Area */}
             <section className="bg-[#fdf2f2] py-10 px-4 md:px-8 lg:px-16 pb-12">
                 <div className="max-w-7xl mx-auto">
-                    
+
                     {/* Product Grid */}
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-12">
                         {paginatedProducts.map((product) => (
@@ -153,7 +153,7 @@ export default function CollectionLayout({ title, products, breadcrumbs, seoPara
 
                     {/* Dynamic Reusable Pagination */}
                     <div className="mt-20 mb-10 border-b border-gray-300 pb-16">
-                        <Pagination 
+                        <Pagination
                             totalItems={products.length}
                             itemsPerPage={itemsPerPage}
                             currentPage={currentPage}
@@ -165,39 +165,48 @@ export default function CollectionLayout({ title, products, breadcrumbs, seoPara
                     </div>
 
                     {/* SEO Footer Area perfectly matched to Figma Image */}
-                    <div className="pt-12 max-w-[1200px] mx-auto flex flex-col px-4">
-                        <p className="text-[12px] text-gray-600 font-inria tracking-widest uppercase mb-12 uppercase text-left">
+                    <div className="pt-16 max-w-[1000px] mx-auto flex flex-col px-4 pb-20">
+                        <p className="text-[12px] text-gray-600 font-inria tracking-[0.2em] uppercase mb-16 text-left">
                             {breadcrumbs}
                         </p>
-                        
-                        <h1 className="text-[26px] md:text-3xl text-center text-[#FC6C85] font-inknut font-bold uppercase mb-12 tracking-wider">
+
+                        <h1 className="text-[26px] md:text-[28px] text-center text-[#FC6C85] font-inknut font-bold uppercase mb-16 tracking-wider">
                             {title}
                         </h1>
-                        
-                        <div className="flex flex-col gap-[26px] font-inria text-[17px] text-gray-900 leading-[1.8] max-w-5xl mx-auto text-center md:text-left px-4 md:px-8 bg-transparent">
+
+                        <div className="flex flex-col gap-10 font-inria text-[19px] text-gray-900 leading-[2.2] text-left bg-transparent">
                             {seoParagraphs.map((para, idx) => {
-                                // Extract brand name highlight safely without injecting html
+                                const isLastPara = idx === seoParagraphs.length - 1;
+                                const alignClass = isLastPara ? "text-center mt-6" : "text-left";
+
+                                // Extract brand name highlight safely
                                 if (para.includes('Vastrin by Hasitha.')) {
                                     const parts = para.split('Vastrin by Hasitha.');
                                     return (
-                                        <p key={idx} className={idx === seoParagraphs.length - 1 ? "text-center mt-6" : ""}>
+                                        <p key={idx} className={alignClass}>
                                             {parts[0]}
                                             <span className="text-[#FC6C85] font-bold">Vastrin by Hasitha.</span>
                                             {parts[1]}
                                         </p>
                                     );
                                 }
-                                return <p key={idx}>{para}</p>;
+                                return <p key={idx} className={alignClass}>{para}</p>;
                             })}
+                        </div>
+
+                        {/* Popular Searches Block Exactly Matched to Image */}
+                        <div className="flex justify-center w-full mt-28">
+                            <h2 className="text-[22px] md:text-2xl text-center text-[#FC6C85] font-inknut font-bold uppercase mb-12 tracking-wider">
+                                POPULAR SEARCHES
+                            </h2>
+                        </div>
+
+                        <div className="flex flex-col gap-6 underline font-inria text-[18.5px] text-gray-900 leading-[2.4] tracking-wide text-left">
+                            {seoParagraphs}
                         </div>
                     </div>
                 </div>
             </section>
-            
-            {/* Reusable Popular Searches block */}
-            <div className="bg-[#fdf2f2] pt-8">
-                <PopularSearches />
-            </div>
         </React.Fragment>
     );
 }
