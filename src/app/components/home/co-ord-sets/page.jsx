@@ -56,7 +56,7 @@ const ProductCard = ({ product }) => (
             </div>
 
             {/* Wishlist Icon */}
-            <button className="absolute top-3 right-3 p-1.5 rounded-full bg-white/80 hover:bg-white transition-colors">
+            <button className="absolute top-3 right-3 p-1.5 ">
                 <Heart size={18} className="text-gray-700" />
             </button>
         </div>
@@ -66,11 +66,11 @@ const ProductCard = ({ product }) => (
             <h3 className="text-[11px] md:text-xs font-medium text-gray-800 leading-tight tracking-wide px-2 uppercase">
                 {product.title}
             </h3>
-            <div className="flex items-center justify-center gap-2">
-                <span className="text-[#f472b6] font-bold text-sm md:text-base uppercase">
+            <div className="flex items-center justify-center gap-2 font-inria">
+                <span className="text-[#E01A69] font-bold text-sm md:text-base uppercase">
                     RS {product.price}
                 </span>
-                <span className="text-gray-400 line-through text-[11px] md:text-xs">
+                <span className="text-[rgba(77,106,57,0.67)] line-through text-[11px] md:text-xs">
                     RS {product.originalPrice}
                 </span>
             </div>
@@ -80,10 +80,10 @@ const ProductCard = ({ product }) => (
 
 export default function CoOrdSets() {
     return (
-        <section className="bg-[#fdf2f2] py-16 px-4 md:px-8 lg:px-16">
-            <div className="max-w-7xl mx-auto">
+        <section className="bg-[#fdf2f2] py-16 px-4 md:px-8 lg:px-16 font-inknut">
+            <div className="max-w-7xl mx-auto font-inknut">
                 {/* Section Heading */}
-                <h2 className="text-3xl md:text-4xl font-serif text-center mb-12 uppercase tracking-[0.2em] text-gray-900">
+                <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 uppercase tracking-wider text-gray-900">
                     Co-ord Sets — Flat ₹999
                 </h2>
 
@@ -106,7 +106,7 @@ export default function CoOrdSets() {
 
                 {/* View All Button */}
                 <div className="mt-16 flex justify-center">
-                    <button className="bg-[#f472b6] hover:bg-[#ec4899] text-white px-10 py-3 text-sm font-bold uppercase tracking-[0.2em] transition-all transform hover:scale-105 active:scale-95 cursor-pointer">
+                    <button className="bg-[#FC6C85] text-white px-10 py-3 text-sm font-bold uppercase tracking-[0.2em] transition-all transform hover:scale-105 active:scale-95 cursor-pointer">
                         View All
                     </button>
                 </div>

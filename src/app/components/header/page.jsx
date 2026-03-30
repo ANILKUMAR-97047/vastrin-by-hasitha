@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState } from 'react';
-
+import { IoSearchOutline } from "react-icons/io5";
+import { GoHeart } from "react-icons/go";
+import { PiHandbagSimpleLight } from "react-icons/pi";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,7 +19,7 @@ export default function Header() {
 
     return (
         <header className="w-full bg-white shadow-sm sticky top-0 z-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
 
                     {/* Logo */}
@@ -47,20 +49,18 @@ export default function Header() {
 
                     {/* Right Icons (Desktop & Tablet) */}
                     <div className="hidden md:flex items-center space-x-5 lg:space-x-6">
-                        <img
-                            className="w-6 h-6 rounded-full cursor-pointer hover:opacity-80 transition-opacity"
-                            src="https://placehold.co/24x24"
-                            alt="User Profile"
-                        />
+
 
                         {/* Tote/Bag Placeholder Icon */}
-                        <div className="w-6 h-6 relative overflow-hidden cursor-pointer flex items-center justify-center hover:opacity-80 transition-opacity">
-                            <div className="w-5 h-4 absolute outline outline-2 outline-offset-[-1px] outline-yellow-500 rounded-[2px]" />
-                        </div>
-
-                        {/* App/Menu Outline Placeholder Icon */}
-                        <div className="w-5 h-5 flex justify-center items-center cursor-pointer hover:opacity-80 transition-opacity">
-                            <div className="w-5 h-5 bg-yellow-500 rounded-[2px]" />
+                        <div className='flex gap-3'>
+                            <img
+                                className="w-[24px] h-[24px] object-fill rounded-full cursor-pointer hover:opacity-80 transition-opacity"
+                                src="/images/logos/profile.png"
+                                alt="User Profile"
+                            />
+                            <IoSearchOutline className='text-[#DBA622]' size={24} />
+                            <GoHeart className='text-[#DBA622]' size={24} />
+                            <PiHandbagSimpleLight className='text-[#DBA622]' size={24} />
                         </div>
                     </div>
 

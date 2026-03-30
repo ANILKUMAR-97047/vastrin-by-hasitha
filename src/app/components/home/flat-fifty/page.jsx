@@ -38,7 +38,7 @@ const products = [
 ];
 
 const ProductCard = ({ product }) => (
-    <div className="group flex flex-col items-center">
+    <div className="group flex flex-col items-center font-inknut">
         {/* Image Container */}
         <div className="relative w-full aspect-[3/4] overflow-hidden rounded-md bg-gray-100">
             <Image
@@ -49,12 +49,12 @@ const ProductCard = ({ product }) => (
             />
 
             {/* Save Tag */}
-            <div className="absolute top-3 left-0 bg-[#ef4444] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider">
+            <div className="absolute top-3 left-3 rounded-xs bg-[#ef4444] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider">
                 {product.discount}
             </div>
 
             {/* Wishlist Icon */}
-            <button className="absolute top-3 right-3 p-1.5 rounded-full bg-white/80 hover:bg-white transition-colors">
+            <button className="absolute top-3 right-3 p-1.5">
                 <Heart size={18} className="text-gray-700" />
             </button>
         </div>
@@ -64,11 +64,11 @@ const ProductCard = ({ product }) => (
             <h3 className="text-[11px] md:text-xs font-medium text-gray-800 leading-tight tracking-wide px-2 uppercase">
                 {product.title}
             </h3>
-            <div className="flex items-center justify-center gap-2">
-                <span className="text-[#f472b6] font-bold text-sm md:text-base uppercase">
+            <div className="flex items-center justify-center gap-2 font-inria">
+                <span className="text-[#E01A69] font-bold text-sm md:text-base uppercase">
                     RS {product.price}
                 </span>
-                <span className="text-gray-400 line-through text-[11px] md:text-xs">
+                <span className="text-[rgba(77,106,57,0.67)] line-through text-[11px] md:text-xs">
                     RS {product.originalPrice}
                 </span>
             </div>
@@ -78,10 +78,10 @@ const ProductCard = ({ product }) => (
 
 export default function FlatFifty() {
     return (
-        <section className="bg-[#fdf2f2] py-16 px-4 md:px-8 lg:px-16">
+        <section className="bg-[#fdf2f2] py-10 px-4 md:px-8 lg:px-16">
             <div className="max-w-7xl mx-auto">
                 {/* Section Heading */}
-                <h2 className="text-3xl md:text-4xl font-serif text-center mb-12 uppercase tracking-[0.2em] text-gray-900">
+                <h2 className="text-3xl font-inknut md:text-4xl text-center mb-12 uppercase tracking-normal text-gray-900 font-bold">
                     flat 50% flat 999{" "}
                 </h2>
 
@@ -104,7 +104,7 @@ export default function FlatFifty() {
 
                 {/* View All Button */}
                 <div className="mt-16 flex justify-center">
-                    <button className="bg-[#f472b6] hover:bg-[#ec4899] text-white px-10 py-3 text-sm font-bold uppercase tracking-[0.2em] transition-all transform hover:scale-105 active:scale-95 cursor-pointer">
+                    <button className="bg-[#FC6C85] font-inknut hover:bg-[#ec4899] text-white px-10 py-3 text-sm font-bold uppercase tracking-[0.2em] transition-all transform hover:scale-105 active:scale-95 cursor-pointer">
                         View All
                     </button>
                 </div>

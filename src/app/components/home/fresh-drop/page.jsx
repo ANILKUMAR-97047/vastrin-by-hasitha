@@ -51,22 +51,22 @@ const ProductCard = ({ product }) => (
             />
 
             {/* Save Tag */}
-            <div className="absolute top-3 left-0 bg-[#ef4444] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider">
+            <div className="absolute font-inknut top-3 left-3 rounded-xs bg-[#ef4444] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider">
                 {product.discount}
             </div>
 
             {/* Wishlist Icon */}
-            <button className="absolute top-3 right-3 p-1.5 rounded-full bg-white/80 hover:bg-white transition-colors">
-                <Heart size={18} className="text-gray-700" />
+            <button className="absolute top-3 right-3 p-1.5">
+                <Heart size={24} className="text-gray-700" />
             </button>
         </div>
 
         {/* Product Info */}
         <div className="mt-4 text-center space-y-2">
-            <h3 className="text-[11px] md:text-xs font-medium text-gray-800 leading-tight tracking-wide px-2 uppercase">
+            <h3 className="text-[11px] md:text-xs  font-medium text-gray-800 leading-tight tracking-wide px-2 uppercase font-inknut">
                 {product.title}
             </h3>
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center justify-center gap-2 font-inria">
                 <span className="text-[#f472b6] font-bold text-sm md:text-base uppercase">
                     RS {product.price}
                 </span>
@@ -83,7 +83,7 @@ export default function FreshDrop() {
         <section className="bg-[#fdf2f2] py-16 px-4 md:px-8 lg:px-16">
             <div className="max-w-7xl mx-auto">
                 {/* Section Heading */}
-                <h2 className="text-3xl md:text-4xl font-serif text-center mb-12 uppercase tracking-[0.2em] text-gray-900">
+                <h2 className="text-3xl font-inknut md:text-4xl text-center mb-12 uppercase tracking-[0.2em] text-gray-900 font-bold">
                     Fresh Drop
                 </h2>
 
@@ -105,7 +105,7 @@ export default function FreshDrop() {
                 </div>
 
                 {/* View All Button */}
-                <div className="mt-16 flex justify-center">
+                <div className="mt-10 flex justify-center -mb-10 font-inknut">
                     <button className="bg-[#f472b6] hover:bg-[#ec4899] text-white px-10 py-3 text-sm font-bold uppercase tracking-[0.2em] transition-all transform hover:scale-105 active:scale-95 cursor-pointer">
                         View All
                     </button>

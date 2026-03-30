@@ -13,9 +13,13 @@ export default function HomePage() {
     return (
         <div className="w-full">
             <Hero />
+
             <FreshDrop />
+            <hr className='w-[90%] mx-auto border-[#CCCCCC] my-2' />
             <FlatFifty />
+            <hr className='w-[90%] mx-auto border-[#CCCCCC] my-2' />
             <CoOrdSets />
+            <hr className='w-[90%] mx-auto border-[#CCCCCC] my-2' />
             <CoutureCollections />
             <Newsletter />
             <StoriesGallery />
