@@ -77,7 +77,7 @@ export default function Footer() {
                     <p className="text-gray-200 text-sm font-bold font-['Inknut_Antiqua'] max-w-xs">
                         Sign up now for exclusive deals, the latest drops, and style inspiration!
                     </p>
-                    <div className="flex flex-col sm:flex-row w-full max-w-sm gap-2 mt-2">
+                    <div className="flex flex-col w-full max-w-[200px] gap-2 mt-2">
                         <input
                             type="email"
                             placeholder="Email"
