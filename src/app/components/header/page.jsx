@@ -1,20 +1,23 @@
 "use client";
 
 import React, { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { IoSearchOutline } from "react-icons/io5";
 import { GoHeart } from "react-icons/go";
 import { PiHandbagSimpleLight } from "react-icons/pi";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const pathname = usePathname();
 
     const navLinks = [
-        { name: "Home", active: true },
-        { name: "Kurti Sets", active: false },
-        { name: "Co-ord sets", active: false },
-        { name: "Best Sellers", active: false },
-        { name: "Special Category", active: false },
-        { name: "Accessories", active: false },
+        { name: "Home", href: "/" },
+        { name: "Kurti Sets", href: "/collections/kurti-sets" },
+        { name: "Co-ord sets", href: "/collections/coord-sets" },
+        { name: "Best Sellers", href: "/collections/best-sellers" },
+        { name: "Special Category", href: "/collections/special-category" },
+        { name: "Accessories", href: "/collections/accessories" },
     ];
 
     return (
@@ -33,18 +36,21 @@ export default function Header() {
 
                     {/* Desktop Navigation */}
                     <nav className="hidden lg:flex space-x-6 xl:space-x-8">
-                        {navLinks.map((link) => (
-                            <a
-                                key={link.name}
-                                href="#"
-                                className={`font-inknut text-[17px] tracking-[-0.6px] transition-colors ${link.active
-                                    ? "text-[#FC6C85] font-semibold underline decoration-solid [text-underline-position:from-font]"
-                                    : "text-[#DBA622] font-normal hover:text-[#FC6C85]"
+                        {navLinks.map((link) => {
+                            const isActive = pathname === link.href;
+                            return (
+                                <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    className={`font-inknut text-[17px] tracking-[-0.6px] transition-colors ${isActive
+                                        ? "text-[#FC6C85] font-semibold underline decoration-solid [text-underline-position:from-font]"
+                                        : "text-[#DBA622] font-normal hover:text-[#FC6C85]"
                                     }`}
-                            >
-                                {link.name}
-                            </a>
-                        ))}
+                                >
+                                    {link.name}
+                                </Link>
+                            );
+                        })}
                     </nav>
 
                     {/* Right Icons (Desktop & Tablet) */}
@@ -92,18 +98,22 @@ export default function Header() {
             {isMenuOpen && (
                 <div className="lg:hidden bg-white border-t border-gray-100 shadow-md absolute w-full left-0 z-40">
                     <div className="px-4 pt-2 pb-3 space-y-1 sm:px-6">
-                        {navLinks.map((link) => (
-                            <a
-                                key={link.name}
-                                href="#"
-                                className={`block px-3 py-2.5 rounded-md font-['Inknut_Antiqua'] text-[17px] tracking-[-0.6px] ${link.active
-                                    ? "text-[#FC6C85] font-semibold underline decoration-solid [text-underline-position:from-font] bg-gray-50"
-                                    : "text-[#DBA622] font-normal hover:bg-gray-50 hover:text-[#FC6C85]"
+                        {navLinks.map((link) => {
+                            const isActive = pathname === link.href;
+                            return (
+                                <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className={`block px-3 py-2.5 rounded-md font-['Inknut_Antiqua'] text-[17px] tracking-[-0.6px] ${isActive
+                                        ? "text-[#FC6C85] font-semibold underline decoration-solid [text-underline-position:from-font] bg-gray-50"
+                                        : "text-[#DBA622] font-normal hover:bg-gray-50 hover:text-[#FC6C85]"
                                     }`}
-                            >
-                                {link.name}
-                            </a>
-                        ))}
+                                >
+                                    {link.name}
+                                </Link>
+                            );
+                        })}
                     </div>
 
                     {/* Render icons inside mobile menu ONLY for small mobile devices (since we show them on tablet header) */}
