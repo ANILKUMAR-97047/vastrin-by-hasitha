@@ -14,7 +14,7 @@ export default function StoriesGallery() {
       <div className="max-w-7xl mx-auto">
 
         {/* Section Title */}
-        <h2 className="text-center font-serif text-3xl md:text-4xl lg:text-[32px] font-bold uppercase tracking-[0.1em] text-[#FC6C85] mb-12">
+        <h2 className="text-center font-inknut text-3xl md:text-4xl lg:text-[32px] font-bold uppercase tracking-[0.1em] text-[#FC6C85] mb-12">
           Vastrin By Hasitha Stories
         </h2>
 
@@ -23,7 +23,7 @@ export default function StoriesGallery() {
           {storyImages.map((image) => (
             <div
               key={image.id}
-              className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-shadow"
+              className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-shadow cursor-pointer"
             >
               <Image
                 src={image.src}

@@ -40,7 +40,7 @@ const products = [
 ];
 
 const ProductCard = ({ product }) => (
-    <div className="group flex flex-col items-center">
+    <div className="group flex flex-col items-center cursor-pointer">
         {/* Image Container */}
         <div className="relative w-full aspect-[3/4] overflow-hidden rounded-md bg-gray-100">
             <Image
