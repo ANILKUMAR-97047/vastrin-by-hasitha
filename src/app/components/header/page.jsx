@@ -28,7 +28,7 @@ export default function Header() {
                     {/* Logo */}
                     <div className="shrink-0 flex items-center cursor-pointer">
                         <img
-                            className="w-32 h-16 object-contain"
+                            className="w-16 h-16 object-contain"
                             src='/images/logos/vastrinheader.svg'
                             alt="Vastrin Logo"
                         />
@@ -59,15 +59,18 @@ export default function Header() {
 
                         {/* Tote/Bag Placeholder Icon */}
                         <div className='flex gap-3'>
-                            <img
+                            <Link href="/profile"><img
                                 className="w-[24px] h-[24px] object-fill rounded-full cursor-pointer hover:opacity-80 transition-opacity"
                                 src="/images/logos/profile.png"
                                 alt="User Profile"
                             />
+                            </Link>
                             <IoSearchOutline className='text-[#DBA622]' size={24} />
                             <GoHeart className='text-[#DBA622]' size={24} />
-                            <PiHandbagSimpleLight className='text-[#DBA622]' size={24} />
+                            <Link href="/components/cart"><PiHandbagSimpleLight className='text-[#DBA622] ' size={24} /></Link>
+                            <Link href="/components/auth/login"><p className='text-[#DBA622] ml-4 lg:text-[16px] font-semibold cursor-pointer'>Login</p></Link>
                         </div>
+
                     </div>
 
                     {/* Mobile menu button */}
@@ -126,7 +129,9 @@ export default function Header() {
                         <IoSearchOutline className='text-[#DBA622]' size={24} />
                         <GoHeart className='text-[#DBA622]' size={24} />
                         <PiHandbagSimpleLight className='text-[#DBA622]' size={24} />
+
                     </div>
+
                 </div>
             )}
         </header>

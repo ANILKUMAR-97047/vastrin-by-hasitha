@@ -54,7 +54,7 @@ export default async function ProductDetailPage({ params }) {
                 </div>
 
                 {/* Related Products */}
-                <div className="w-full pt-10 border-t border-gray-200">
+                <div className="w-full">
                     <ProductSection title="RELATED PRODUCTS" products={relatedProducts} />
                 </div>
 

@@ -10,16 +10,16 @@ const storyImages = [
 
 export default function StoriesGallery() {
   return (
-    <section className="bg-[#fdf2f2] py-16 px-6 md:px-12 lg:px-24">
+    <section className="bg-[#fdf2f2] py-8 px-6 md:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto">
 
         {/* Section Title */}
-        <h2 className="text-center font-inknut text-3xl md:text-4xl lg:text-[32px] font-bold uppercase tracking-[0.1em] text-[#FC6C85] mb-12">
+        <h2 className="text-center font-inknut text-[24px] md:text-[28px] lg:text-[32px] font-bold uppercase tracking-[0.1em] text-[#FC6C85] mb-12">
           Vastrin By Hasitha Stories
         </h2>
 
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {storyImages.map((image) => (
             <div
               key={image.id}

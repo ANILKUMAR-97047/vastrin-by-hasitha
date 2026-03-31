@@ -34,8 +34,8 @@ const searchData = [
 
 export default function PopularSearches() {
     return (
-        <section className="relative bg-[#fdf2f2] py-16 px-6 md:px-12 lg:px-24 border-t border-pink-100">
-            <div className="max-w-7xl mx-auto">
+        <section className="relative bg-[#fdf2f2] py-4 px-6 md:px-12 lg:px-24 border-t border-pink-100">
+            <div className="max-w-7xl mx-auto lg:mb-4">
 
                 <h2 className="text-[#E01A69] font-bold text-sm md:text-base uppercase tracking-widest mb-10">
                     Popular Searches

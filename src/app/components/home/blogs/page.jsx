@@ -31,16 +31,16 @@ const blogs = [
 
 export default function BlogPosts() {
   return (
-    <section className="bg-[#fdf2f2] py-20 px-6 md:px-12">
+    <section className="bg-[#fdf2f2] py-10 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
 
         {/* Section Heading */}
-        <h2 className="text-center font-serif text-4xl md:text-5xl lg:text-[32px] font-bold uppercase tracking-[0.2em] text-[#FC6C85] mb-16">
+        <h2 className="text-center font-serif text-4xl md:text-5xl lg:text-[30px] font-bold uppercase tracking-[0.2em] text-[#FC6C85] mb-10">
           Blog Posts
         </h2>
 
         {/* Grid Container */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 font-inknut">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 font-inknut">
           {blogs.map((blog) => (
             <article
               key={blog.id}

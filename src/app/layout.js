@@ -4,6 +4,8 @@ import {
   Inika,
   Archivo
 } from "next/font/google";
+import { Toaster } from "react-hot-toast";
+
 import "./globals.css";
 import Header from "./components/header/page";
 import Footer from "./components/footer/page";
@@ -66,6 +68,8 @@ export default function RootLayout({ children }) {
         `}>
         <Header />
         <main className="flex-1 flex flex-col">
+          <Toaster position="top-right" />
+
           {children}
         </main>
         <SubFooter />

@@ -1,73 +1,168 @@
-import React from 'react';
+'use client';
 
-const renderStars = (rating) => {
-    return Array(rating).fill('★').join('');
-};
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { FaCamera } from 'react-icons/fa';
 
 export default function ProductReviews({ product }) {
     if (!product.reviews || product.reviews.length === 0) return null;
 
+    const [isWriting, setIsWriting] = useState(false);
+
+    // Fixed mock values to closely match screenshot
+    const reviewDistribution = [
+        { level: 5, count: 100 },
+        { level: 4, count: 11 },
+        { level: 3, count: 3 },
+        { level: 2, count: 8 },
+        { level: 1, count: 1 }
+    ];
+    const totalReviews = 123;
+
+    if (isWriting) {
+        return (
+            <div className="w-[95%] max-w-2xl font-inknut space-y-6 mx-auto border border-gray-100 rounded-md p-6 bg-[#FFEDF0]">
+                {/* Header with Close */}
+                <div className="flex justify-between items-center mb-6 -mt-10">
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#A68B5B] tracking-wide">
+                        Write a review
+                    </h2>
+                    <button
+                        onClick={() => setIsWriting(false)}
+                        className="text-gray-500 hover:text-gray-800 font-semibold px-4 py-2 border rounded border-gray-300"
+                    >
+                        Cancel
+                    </button>
+                </div>
+
+                {/* Product Snippet */}
+                <div className="flex items-center gap-4 mb-6">
+                    <div className="relative w-20 h-20 border border-gray-200 bg-white">
+                        <Image
+                            src={product.mainImage || product.image || '/images/home/fresh-drop/image-1.png'}
+                            alt={product.title}
+                            fill
+                            sizes="80px"
+                            className="object-cover"
+                        />
+                    </div>
+                    <div className="flex flex-col">
+                        <h4 className="font-bold text-gray-900 text-sm md:text-base max-w-[400px] leading-tight mb-2">
+                            {product.title}
+                        </h4>
+                        <span className="text-gray-200 text-xl tracking-widest leading-none">★★★★★</span>
+                    </div>
+                </div>
+
+                {/* Form Elements */}
+                <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); setIsWriting(false); }}>
+                    {/* Name */}
+                    <div className="flex flex-col gap-2">
+                        <label className="text-[#4A4A5A] text-sm">Your name *</label>
+                        <input
+                            type="text"
+                            required
+                            className="w-full border border-gray-200 rounded-md px-4 py-3 focus:outline-none focus:border-gray-400 shadow-sm bg-white"
+                        />
+                    </div>
+
+                    {/* Email */}
+                    <div className="flex flex-col gap-2">
+                        <label className="text-[#4A4A5A] text-sm">Your email *</label>
+                        <input
+                            type="email"
+                            required
+                            className="w-full border border-gray-200 rounded-md px-4 py-3 focus:outline-none focus:border-gray-400 shadow-sm bg-white"
+                        />
+                    </div>
+
+                    {/* Review area */}
+                    <div className="flex flex-col gap-2">
+                        <label className="text-[#4A4A5A] text-sm">Review *</label>
+                        <textarea
+                            rows="4"
+                            required
+                            placeholder="Let us know what you think"
+                            className="w-full border border-gray-200 rounded-md px-4 py-3 placeholder:text-gray-300 focus:outline-none focus:border-gray-400 shadow-sm resize-none bg-white"
+                        ></textarea>
+                    </div>
+
+                    {/* Camera */}
+                    <div className="pt-2">
+                        <FaCamera size={24} className="text-gray-400 cursor-pointer hover:text-gray-600 transition" />
+                    </div>
+
+                    {/* Submit Button */}
+                    <button type="submit" className="w-full bg-[#FF6A88] hover:bg-[#F95F7D] text-white text-lg font-semibold rounded-md py-3.5 transition tracking-wide">
+                        Submit review
+                    </button>
+                </form>
+            </div>
+        );
+    }
+
     return (
-        <div className="w-full font-inknut space-y-8 max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900 tracking-wide">
-                    Customer <span className="italic font-inria font-normal">Reviews</span>
+        <div className="w-[95%] font-inknut space-y-6 mx-auto bg-transparent">
+            {/* Header Row */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <h3 className="text-xl md:text-2xl font-bold text-[#333333] tracking-wide">
+                    Customer Reviews
                 </h3>
-                <button className="bg-[#D4AF37] hover:bg-[#c19b28] text-white px-6 py-2.5 text-sm font-semibold tracking-wide transition">
+                <button
+                    onClick={() => setIsWriting(true)}
+                    className="bg-[#DCA839] hover:bg-[#c49430] text-white px-6 py-2.5 rounded text-sm font-semibold tracking-wide transition shadow-sm w-full sm:w-auto"
+                >
                     Write a Review
                 </button>
             </div>
 
-            <div className="flex flex-col lg:flex-row gap-12 pt-4">
-                {/* Review Overview Sidebar */}
-                <div className="flex flex-col w-full lg:w-1/3 min-w-[280px]">
-                    <div className="flex items-end gap-3 mb-6">
-                        <span className="text-4xl md:text-5xl font-bold font-inria leading-none">5</span>
-                        <span className="text-xl text-gray-500 font-inria pb-1">/ 5</span>
-                        <span className="text-[#D4AF37] text-xl ml-2 tracking-widest pb-1">★★★★★</span>
-                        <span className="text-sm text-gray-400 ml-1 pb-1 font-inria">{product.reviewCount} reviews</span>
-                    </div>
+            {/* Main Content Area */}
+            <div className="flex flex-col w-full max-w-[500px]">
+                {/* Summary Section */}
+                <div className="flex flex-row items-baseline gap-3 mb-6">
+                    <span className="text-4xl md:text-5xl font-bold text-[#333333] leading-none">
+                        5<span className="text-2xl md:text-4xl lg:text-[32px] font-normal text-gray-500">/5</span>
+                    </span>
+                    <span className="text-[#F5A623] text-lg md:text-xl ml-2 tracking-widest pb-1 md:pb-0">★★★★★</span>
+                    <span className="text-xs text-gray-500 font-semibold pb-1 md:pb-0">{product.reviewCount || 47} reviews</span>
+                </div>
 
-                    <div className="space-y-3 font-inria text-sm text-gray-700 font-semibold w-full max-w-[300px]">
-                        {[
-                            { level: 5, count: 100 },
-                            { level: 4, count: 11 },
-                            { level: 3, count: 3 },
-                            { level: 2, count: 8 },
-                            { level: 1, count: 1 }
-                        ].map(bar => {
-                            const percentage = (bar.count / 123) * 100; // rough mock total
-                            return (
-                                <div key={bar.level} className="flex items-center gap-4">
-                                    <span className="w-4">{bar.level}</span>
-                                    <div className="flex-1 h-1.5 bg-gray-200">
-                                        <div 
-                                            className="h-full bg-[#FC6C85]" 
-                                            style={{ width: `${percentage}%` }}
-                                        />
-                                    </div>
-                                    <span className="w-8 text-right text-gray-500">{bar.count}</span>
+                {/* Distribution Bars */}
+                <div className="space-y-3 font-semibold text-sm text-[#333333] w-full">
+                    {reviewDistribution.map(bar => {
+                        const percentage = (bar.count / totalReviews) * 100;
+                        return (
+                            <div key={bar.level} className="flex items-center gap-4">
+                                <span className="w-4 text-left">{bar.level}</span>
+                                <div className="flex-1 h-[3px] bg-[#D8D8D8] rounded-full overflow-hidden">
+                                    <div
+                                        className="h-full bg-[#F5A623] rounded-full"
+                                        style={{ width: `${percentage}%` }}
+                                    />
                                 </div>
-                            );
-                        })}
-                    </div>
-                </div>
-
-                {/* Reviews List */}
-                <div className="w-full lg:w-2/3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-min">
-                    {product.reviews.map(review => (
-                        <div key={review.id} className="bg-white p-5 shadow-sm border border-gray-100 flex flex-col space-y-3">
-                            <h4 className="font-bold text-sm tracking-wide text-gray-900">{review.name}</h4>
-                            <div className="flex items-center justify-between">
-                                <span className="text-gray-400 text-xs font-inria italic">{review.date}</span>
-                                <span className="text-[#D4AF37] text-xs">★★★★★</span>
+                                <span className="w-8 text-right">{bar.count}</span>
                             </div>
-                            <p className="text-xs text-gray-600 font-medium font-inria leading-relaxed mt-2 pt-2 border-t border-gray-50">
-                                {review.text}
-                            </p>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
+            </div>
+
+            {/* Reviews List Cards */}
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-10">
+                {product.reviews.map(review => (
+                    <div key={review.id} className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex flex-col h-full">
+                        <div className="flex justify-between items-start mb-4">
+                            <div className="flex flex-col space-y-1">
+                                <h4 className="font-bold text-sm text-[#333333] tracking-wide">{review.name}</h4>
+                                <span className="text-gray-400 text-xs">{review.date}</span>
+                            </div>
+                            <span className="text-[#F5A623] text-sm tracking-widest leading-none mt-0.5">★★★★★</span>
+                        </div>
+                        <p className="text-xs text-gray-600 font-medium leading-relaxed">
+                            {review.text}
+                        </p>
+                    </div>
+                ))}
             </div>
         </div>
     );

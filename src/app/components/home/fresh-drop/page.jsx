@@ -88,7 +88,7 @@ export default function FreshDrop() {
                 </h2>
 
                 {/* Product Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-5">
                     {/* Mapping through 4 items for demo purposes */}
                     {products.map((product) => (
                         <ProductCard
@@ -105,7 +105,7 @@ export default function FreshDrop() {
                 </div>
 
                 {/* View All Button */}
-                <div className="mt-10 flex justify-center -mb-10 font-inknut">
+                <div className="mt-8 flex justify-center -mb-10 font-inknut">
                     <button className="bg-[#f472b6] hover:bg-[#ec4899] text-white px-10 py-3 text-sm font-bold uppercase tracking-[0.2em] transition-all transform hover:scale-105 active:scale-95 cursor-pointer">
                         View All
                     </button>
