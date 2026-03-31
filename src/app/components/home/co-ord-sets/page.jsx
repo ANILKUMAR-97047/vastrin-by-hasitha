@@ -51,7 +51,7 @@ const ProductCard = ({ product }) => (
             />
 
             {/* Save Tag */}
-            <div className="absolute top-3 left-3 bg-[#ef4444] rounded-xs text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider">
+            <div className="absolute top-3 left-3 bg-[#E32C2B] rounded-xs text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider">
                 {product.discount}
             </div>
 
@@ -83,7 +83,7 @@ export default function CoOrdSets() {
         <section className="bg-[#fdf2f2] py-16 px-4 md:px-8 lg:px-16 font-inknut">
             <div className="max-w-7xl mx-auto font-inknut">
                 {/* Section Heading */}
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 uppercase tracking-wider text-gray-900">
+                <h2 className="text-3xl md:text-4xl lg:text-[32px] font-bold text-center mb-12 uppercase tracking-wider text-gray-900">
                     Co-ord Sets — Flat ₹999
                 </h2>
 

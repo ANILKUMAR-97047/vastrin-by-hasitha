@@ -30,7 +30,7 @@ export default function SubFooter() {
   ];
 
   return (
-    <div className="w-full bg-rose-400 border-y border-stone-300 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="w-full bg-[#FC6C85] border-y border-stone-300 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-10 md:gap-16 lg:gap-20">
         {features.map((feature, idx) => (
           <div

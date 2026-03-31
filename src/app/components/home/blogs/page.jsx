@@ -35,7 +35,7 @@ export default function BlogPosts() {
       <div className="max-w-7xl mx-auto">
 
         {/* Section Heading */}
-        <h2 className="text-center font-serif text-4xl md:text-5xl lg:text-[32px] font-bold uppercase tracking-[0.2em] text-[#f472b6] mb-16">
+        <h2 className="text-center font-serif text-4xl md:text-5xl lg:text-[32px] font-bold uppercase tracking-[0.2em] text-[#FC6C85] mb-16">
           Blog Posts
         </h2>
 
@@ -68,7 +68,7 @@ export default function BlogPosts() {
                   {blog.category}
                 </span>
 
-                <h3 className="text-xl md:text-2xl font-serif font-bold text-gray-800 leading-snug">
+                <h3 className="text-xl md:text-2xl lg:text-[24px] font-inknut font-bold text-gray-800 leading-snug">
                   {blog.title}
                 </h3>
 
@@ -89,7 +89,7 @@ export default function BlogPosts() {
 
         {/* View All Button */}
         <div className="mt-16 flex justify-center">
-          <button className="bg-[#f472b6] hover:bg-[#ec4899] text-white px-12 py-4 text-sm font-bold uppercase tracking-[0.2em] transition-all transform hover:scale-105 cursor-pointer">
+          <button className="bg-[#FC6C85] text-white px-12 py-4 text-sm font-bold uppercase tracking-[0.2em] transition-all transform hover:scale-105 cursor-pointer">
             View All
           </button>
         </div>

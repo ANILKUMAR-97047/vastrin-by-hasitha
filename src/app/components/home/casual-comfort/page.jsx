@@ -48,12 +48,12 @@ const CategoryTile = ({ collection }) => (
       {/* Dynamic text color adjustment based on screenshot */}
       <h3 className={`
         mt-12
-        font-serif 
+       font-inknut
         text-2xl 
         font-light 
         uppercase 
         tracking-[0.2em] 
-        ${collection.id === 3 ? 'text-gray-900' : 'text-white'}
+      text-white
         drop-shadow-md 
         transition-opacity 
         group-hover:opacity-90
@@ -68,10 +68,10 @@ export default function CoutureCollections() {
   return (
     // Background color set to match the pinkish tint in the screenshot
     <section className="bg-[#fdf2f2] py-16 px-4 md:px-8 lg:px-16">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto font-inknut">
 
         {/* Main Section Heading */}
-        <h2 className="mb-10 text-center font-serif text-3xl font-normal uppercase tracking-[0.25em] text-[#db2777]">
+        <h2 className="mb-10 text-center text-3xl font-normal uppercase tracking-[0.25em] text-[#E01A69]">
           Casual And Comfort Coutre
         </h2>
 

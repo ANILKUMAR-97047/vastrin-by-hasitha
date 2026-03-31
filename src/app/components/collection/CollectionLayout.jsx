@@ -165,16 +165,16 @@ export default function CollectionLayout({ title, products, breadcrumbs, seoPara
                     </div>
 
                     {/* SEO Footer Area perfectly matched to Figma Image */}
-                    <div className="pt-16 max-w-[1000px] mx-auto flex flex-col px-4 pb-20">
-                        <p className="text-[12px] text-gray-600 font-inria tracking-[0.2em] uppercase mb-16 text-left">
+                    <div className="pt-2 max-w-[1000px] mx-auto flex flex-col px-4 pb-12">
+                        <p className="text-[12px] text-[#454444] font-inria tracking-[0.2em] uppercase mb-10 text-left font-semibold">
                             {breadcrumbs}
                         </p>
 
-                        <h1 className="text-[26px] md:text-[28px] text-center text-[#FC6C85] font-inknut font-bold uppercase mb-16 tracking-wider">
+                        <h1 className="text-[26px] md:text-[28px] text-center text-[#E01A69] font-inknut font-bold uppercase mb-8 tracking-wider lg:text-[20px]">
                             {title}
                         </h1>
 
-                        <div className="flex flex-col gap-10 font-inria text-[19px] text-gray-900 leading-[2.2] bg-transparent">
+                        <div className="flex flex-col gap-10 font-inika text-[19px] text-gray-900 leading-[2.2] bg-transparent">
                             {/* Paragraph 1 */}
                             {para1 && (
                                 <p className="text-left w-full">{para1}</p>
@@ -187,7 +187,7 @@ export default function CollectionLayout({ title, products, breadcrumbs, seoPara
 
                             {/* Author Quote (Automatically Centers and Highlights "Vastrin by Hasitha") */}
                             {author && (
-                                <p className="text-center mt-6 w-full">
+                                <p className="text-center mt-2 w-full">
                                     {author.split('Vastrin by Hasitha.').map((part, index, arr) => (
                                         <React.Fragment key={index}>
                                             {part}
@@ -201,14 +201,14 @@ export default function CollectionLayout({ title, products, breadcrumbs, seoPara
                         </div>
 
                         {/* Popular Searches Block Exactly Matched to Image */}
-                        <div className="flex justify-center w-full mt-28">
-                            <h2 className="text-[22px] md:text-2xl text-center text-[#FC6C85] font-inknut font-bold uppercase mb-12 tracking-wider">
+                        <div className="flex justify-center w-full mt-10">
+                            <h2 className="text-[22px] md:text-2xl lg:text-[20px] text-center text-[#E01A69] font-inknut font-bold uppercase mb-10 tracking-wider">
                                 POPULAR SEARCHES
                             </h2>
                         </div>
 
                         {/* Renders the user's flat array of seoParagraphs with matching underline text styles */}
-                        <div className="flex flex-col gap-6 underline underline-offset-4 decoration-solid font-inria text-[18.5px] text-gray-900 leading-[2.6] tracking-wide text-left break-words">
+                        <div className="flex flex-col gap-6 underline underline-offset-4 decoration-solid font-inika text-[18.5px] text-[#000000] leading-[2.6] tracking-wide text-left break-words">
                             {seoParagraphs.map((paraBlock, idx) => (
                                 <p key={idx} className="w-full">
                                     {paraBlock}

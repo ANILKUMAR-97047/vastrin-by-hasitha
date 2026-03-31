@@ -16,7 +16,7 @@ export default function ProductCard({ product }) {
 
                 {/* Save Badges */}
                 {product.discount && (
-                    <div className="absolute top-3 left-3 bg-[#FC6C85] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider rounded-sm shadow-sm z-10">
+                    <div className="absolute top-3 left-3 bg-[#E32C2B] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider rounded-sm shadow-sm z-10">
                         {product.discount}
                     </div>
                 )}

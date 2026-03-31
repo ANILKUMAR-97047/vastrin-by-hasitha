@@ -37,7 +37,7 @@ export default function PopularSearches() {
         <section className="relative bg-[#fdf2f2] py-16 px-6 md:px-12 lg:px-24 border-t border-pink-100">
             <div className="max-w-7xl mx-auto">
 
-                <h2 className="text-[#f472b6] font-bold text-sm md:text-base uppercase tracking-widest mb-10">
+                <h2 className="text-[#E01A69] font-bold text-sm md:text-base uppercase tracking-widest mb-10">
                     Popular Searches
                 </h2>
 
@@ -56,7 +56,7 @@ export default function PopularSearches() {
                                     <React.Fragment key={linkIdx}>
                                         <Link
                                             href={`/search?q=${link.toLowerCase().replace(/ /g, '-')}`}
-                                            className="text-gray-700 hover:text-[#f472b6] text-xs md:text-sm transition-colors border-b border-transparent hover:border-[#f472b6]"
+                                            className="text-gray-700 hover:text-[#E01A69] text-xs md:text-sm transition-colors border-b border-transparent hover:border-[#f472b6]"
                                         >
                                             {link}
                                         </Link>

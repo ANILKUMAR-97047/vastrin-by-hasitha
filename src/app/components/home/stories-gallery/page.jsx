@@ -14,7 +14,7 @@ export default function StoriesGallery() {
       <div className="max-w-7xl mx-auto">
 
         {/* Section Title */}
-        <h2 className="text-center font-serif text-3xl md:text-4xl lg:text-[32px] font-bold uppercase tracking-[0.1em] text-[#f472b6] mb-12">
+        <h2 className="text-center font-serif text-3xl md:text-4xl lg:text-[32px] font-bold uppercase tracking-[0.1em] text-[#FC6C85] mb-12">
           Vastrin By Hasitha Stories
         </h2>
 

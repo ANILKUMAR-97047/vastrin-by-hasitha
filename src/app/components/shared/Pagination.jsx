@@ -25,7 +25,7 @@ export default function Pagination({ totalItems, itemsPerPage, currentPage, onPa
     };
 
     return (
-        <div className="flex justify-center items-center gap-4 font-inria text-[22px] font-bold text-gray-800">
+        <div className="flex justify-center items-center gap-4 font-inknut text-[22px] font-bold text-gray-800">
             {currentPage > 1 && (
                 <MdOutlineKeyboardArrowLeft
                     size={30}
@@ -33,23 +33,22 @@ export default function Pagination({ totalItems, itemsPerPage, currentPage, onPa
                     onClick={() => onPageChange(currentPage - 1)}
                 />
             )}
-            
+
             {getPageNumbers().map((page, idx) => (
                 <span
                     key={idx}
                     onClick={() => typeof page === 'number' ? onPageChange(page) : null}
-                    className={`cursor-pointer pb-0 border-b-[2.5px] px-1 transition-colors ${
-                        page === currentPage
-                            ? "border-gray-800 text-gray-800"
-                            : page === '...'
+                    className={`cursor-pointer pb-0 border-b-[2.5px] px-1 transition-colors ${page === currentPage
+                        ? "border-gray-800 text-gray-800"
+                        : page === '...'
                             ? "cursor-default text-gray-800 border-transparent"
                             : "text-gray-800 hover:border-gray-800 border-transparent hover:text-gray-800"
-                    }`}
+                        }`}
                 >
                     {page}
                 </span>
             ))}
-            
+
             {currentPage < totalPages && (
                 <MdOutlineKeyboardArrowRight
                     size={30}
