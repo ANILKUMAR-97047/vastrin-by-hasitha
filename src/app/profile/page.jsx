@@ -25,7 +25,7 @@ const ProfileSettings = () => {
     };
 
     return (
-        <div className="bg-white min-h-screen py-12 px-6 md:px-12 lg:px-24 font-serif text-[#333]">
+        <div className="bg-white min-h-screen py-12 px-6 md:px-12 lg:px-24 font-inknut text-[#333]">
             <div className="max-w-4xl mx-auto">
 
                 {/* Photo Upload Section */}
@@ -134,7 +134,7 @@ const ProfileSettings = () => {
 
                     {/* Save Button */}
                     <div className="pt-10 flex justify-center">
-                        <button className="w-full md:w-80 py-4 bg-[#FF758C] text-white font-bold rounded-lg hover:bg-[#ff5e7a] transition-all shadow-md shadow-pink-100">
+                        <button className="w-full md:w-80 py-4 bg-[#FF758C] text-white font-bold rounded-lg hover:bg-[#ff5e7a] transition-all shadow-md shadow-pink-100 cursor-pointer">
                             Save
                         </button>
                     </div>

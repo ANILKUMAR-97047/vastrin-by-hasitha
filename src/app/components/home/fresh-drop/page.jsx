@@ -1,6 +1,7 @@
+'use client';
+
 import React from 'react';
-import Image from 'next/image';
-import { Heart } from 'lucide-react'; // Optional: npm install lucide-react
+import ProductCard from '../../shared/ProductCard';
 
 const products = [
     {
@@ -35,48 +36,7 @@ const products = [
         originalPrice: '1,900.00',
         discount: 'SAVE 50%',
     },
-
-
 ];
-
-const ProductCard = ({ product }) => (
-    <div className="group flex flex-col items-center cursor-pointer">
-        {/* Image Container */}
-        <div className="relative w-full aspect-[3/4] overflow-hidden rounded-md bg-gray-100">
-            <Image
-                src={product.image}
-                alt={product.title}
-                fill
-                className="object-cover "
-            />
-
-            {/* Save Tag */}
-            <div className="absolute font-inknut top-3 left-3 rounded-xs bg-[#E32C2B] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider">
-                {product.discount}
-            </div>
-
-            {/* Wishlist Icon */}
-            <button className="absolute top-3 right-3 p-1.5">
-                <Heart size={24} className="text-gray-700" />
-            </button>
-        </div>
-
-        {/* Product Info */}
-        <div className="mt-4 text-center space-y-2">
-            <h3 className="text-[11px] md:text-xs  font-medium text-gray-800 leading-tight tracking-wide px-2 uppercase font-inknut">
-                {product.title}
-            </h3>
-            <div className="flex items-center justify-center gap-2 font-inria">
-                <span className="text-[#f472b6] font-bold text-sm md:text-base uppercase">
-                    RS {product.price}
-                </span>
-                <span className="text-gray-400 line-through text-[11px] md:text-xs">
-                    RS {product.originalPrice}
-                </span>
-            </div>
-        </div>
-    </div>
-);
 
 export default function FreshDrop() {
     return (
@@ -94,6 +54,7 @@ export default function FreshDrop() {
                         <ProductCard
                             key={product.id}
                             product={{
+                                id: product.id,
                                 image: product.image,
                                 title: product.title,
                                 price: product.price,

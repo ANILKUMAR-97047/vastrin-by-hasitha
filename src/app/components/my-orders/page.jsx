@@ -252,7 +252,7 @@ const MyOrders = () => {
         : orders.filter(order => order.status === activeFilter);
 
     return (
-        <div className="bg-[#FCFCFC] min-h-screen p-4 md:p-8 lg:px-24 font-serif">
+        <div className="bg-[#FCFCFC] min-h-screen p-4 md:p-8 lg:px-24 font-inknut">
             <div className="max-w-6xl mx-auto">
 
                 {/* Header Section */}

@@ -1,10 +1,11 @@
+'use client';
+
 import React from "react";
-import Image from "next/image";
-import { Heart } from "lucide-react"; // Optional: npm install lucide-react
+import ProductCard from '../../shared/ProductCard';
 
 const products = [
     {
-        id: 1,
+        id: 5,
         image: "/images/home/fresh-drop/image-1.png",
         title: "KLOSIA WOMEN EMBROIDERY KURTA AND PANT SET WITH DUPATAA",
         price: "999.00",
@@ -12,7 +13,7 @@ const products = [
         discount: "SAVE 50%",
     },
     {
-        id: 2,
+        id: 6,
         image: "/images/home/flat-fifty/image-2.png",
         title: "KLOSIA WOMEN EMBROIDERY KURTA AND PANT SET WITH DUPATAA",
         price: "999.00",
@@ -20,7 +21,7 @@ const products = [
         discount: "SAVE 50%",
     },
     {
-        id: 3,
+        id: 7,
         image: "/images/home/flat-fifty/image-3.png",
         title: "KLOSIA WOMEN EMBROIDERY KURTA AND PANT SET WITH DUPATAA",
         price: "999.00",
@@ -28,7 +29,7 @@ const products = [
         discount: "SAVE 50%",
     },
     {
-        id: 4,
+        id: 8,
         image: "/images/home/flat-fifty/image-4.png",
         title: "KLOSIA WOMEN EMBROIDERY KURTA AND PANT SET WITH DUPATAA",
         price: "999.00",
@@ -36,45 +37,6 @@ const products = [
         discount: "SAVE 50%",
     },
 ];
-
-const ProductCard = ({ product }) => (
-    <div className="group flex flex-col items-center font-inknut cursor-pointer">
-        {/* Image Container */}
-        <div className="relative w-full aspect-[3/4] overflow-hidden rounded-md bg-gray-100">
-            <Image
-                src={product.image}
-                alt={product.title}
-                fill
-                className="object-cover "
-            />
-
-            {/* Save Tag */}
-            <div className="absolute top-3 left-3 rounded-xs bg-[#E32C2B] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider">
-                {product.discount}
-            </div>
-
-            {/* Wishlist Icon */}
-            <button className="absolute top-3 right-3 p-1.5">
-                <Heart size={18} className="text-gray-700" />
-            </button>
-        </div>
-
-        {/* Product Info */}
-        <div className="mt-4 text-center space-y-2">
-            <h3 className="text-[11px] md:text-xs font-medium text-gray-800 leading-tight tracking-wide px-2 uppercase">
-                {product.title}
-            </h3>
-            <div className="flex items-center justify-center gap-2 font-inria">
-                <span className="text-[#E01A69] font-bold text-sm md:text-base uppercase">
-                    RS {product.price}
-                </span>
-                <span className="text-[rgba(77,106,57,0.67)] line-through text-[11px] md:text-xs">
-                    RS {product.originalPrice}
-                </span>
-            </div>
-        </div>
-    </div>
-);
 
 export default function FlatFifty() {
     return (
@@ -92,6 +54,7 @@ export default function FlatFifty() {
                         <ProductCard
                             key={product.id}
                             product={{
+                                id: product.id,
                                 image: product.image,
                                 title: product.title,
                                 price: product.price,

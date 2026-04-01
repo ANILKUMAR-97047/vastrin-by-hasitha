@@ -4,8 +4,24 @@ import React from 'react';
 import Image from 'next/image';
 import { GoHeart } from "react-icons/go";
 import Link from 'next/link';
+import { useWishlist } from '@/app/context/WishlistContext';
+import toast from 'react-hot-toast';
 
 export default function ProductCard({ product }) {
+    const { toggleWishlist, isInWishlist } = useWishlist();
+    const inWishlist = isInWishlist(product.id);
+
+    const handleWishlistClick = (e) => {
+        e.preventDefault();
+        toggleWishlist(product);
+        
+        if (inWishlist) {
+            toast.success('Removed from wishlist');
+        } else {
+            toast.success('Added to wishlist');
+        }
+    };
+
     return (
         <div className="group flex flex-col font-inknut relative">
             {/* Image Container */}
@@ -26,8 +42,19 @@ export default function ProductCard({ product }) {
                     )}
 
                     {/* Wishlist Icon */}
-                    <button className="absolute top-3 right-3 p-1.5 z-10 bg-transparent cursor-pointer hover:scale-110 transition-transform" onClick={(e) => e.preventDefault()}>
-                        <GoHeart size={22} className="text-gray-800 font-bold drop-shadow-sm" style={{ strokeWidth: 1 }} />
+                    <button 
+                        className="absolute top-3 right-3 p-1.5 z-10 bg-transparent cursor-pointer hover:scale-110 transition-transform" 
+                        onClick={handleWishlistClick}
+                    >
+                        <GoHeart 
+                            size={22} 
+                            className={`font-bold drop-shadow-sm transition-all ${
+                                inWishlist 
+                                    ? 'fill-[#FC6C85] text-[#FC6C85]' 
+                                    : 'text-gray-800'
+                            }`}
+                            style={{ strokeWidth: 1 }} 
+                        />
                     </button>
                 </div>
 

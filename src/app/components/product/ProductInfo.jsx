@@ -6,15 +6,40 @@ import { BsArrowReturnLeft, BsShieldCheck } from "react-icons/bs";
 import { FaTruck, FaMedal } from "react-icons/fa";
 import { MdOutlineSecurity } from "react-icons/md";
 import { IoReturnUpBackOutline } from "react-icons/io5";
+import { useCart } from '@/app/context/CartContext';
+import { useWishlist } from '@/app/context/WishlistContext';
+import toast from 'react-hot-toast';
 
 export default function ProductInfo({ product }) {
     const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
     const [selectedColor, setSelectedColor] = useState(product.colors[0]);
     const [quantity, setQuantity] = useState(1);
+    const { addToCart } = useCart();
+    const { toggleWishlist, isInWishlist } = useWishlist();
+    const inWishlist = isInWishlist(product.id);
 
     const handleQuantity = (type) => {
         if (type === 'inc') setQuantity(q => q + 1);
         if (type === 'dec' && quantity > 1) setQuantity(q => q - 1);
+    };
+
+    const handleAddToCart = () => {
+        const cartProduct = {
+            ...product,
+            image: product.galleryImages ? product.galleryImages[0] : product.image,
+        };
+        addToCart(cartProduct, selectedSize, selectedColor.name, quantity);
+        toast.success('Added to cart!');
+        setQuantity(1);
+    };
+
+    const handleAddToWishlist = () => {
+        toggleWishlist(product);
+        if (inWishlist) {
+            toast.success('Removed from wishlist');
+        } else {
+            toast.success('Added to wishlist');
+        }
     };
 
     return (
@@ -95,15 +120,29 @@ export default function ProductInfo({ product }) {
                 </div>
 
                 <div className="flex flex-col gap-3 max-w-[400px]">
-                    <button className="w-full py-3.5 border border-[#FC6C85] text-[#FC6C85] hover:bg-[#ffeef1] font-bold text-sm tracking-widest transition">
+                    <button 
+                        onClick={handleAddToCart}
+                        className="w-full py-3.5 border border-[#FC6C85] text-[#FC6C85] hover:bg-[#ffeef1] font-bold text-sm tracking-widest transition"
+                    >
                         ADD TO CART
                     </button>
                     <button className="w-full py-3.5 bg-[#FC6C85] text-white hover:bg-[#e85b75] font-bold text-sm tracking-widest transition">
                         BUY IT NOW
                     </button>
-                    <button className="w-full py-3.5 bg-[#FC6C85] text-white hover:bg-[#e85b75] font-bold text-sm tracking-widest transition flex items-center justify-center gap-2">
-                        <GoHeart size={18} style={{ strokeWidth: 1 }} />
-                        ADD TO WISHLIST
+                    <button 
+                        onClick={handleAddToWishlist}
+                        className={`w-full py-3.5 font-bold text-sm tracking-widest transition flex items-center justify-center gap-2 ${
+                            inWishlist
+                                ? 'bg-[#FC6C85] text-white hover:bg-[#e85b75]'
+                                : 'bg-[#FC6C85] text-white hover:bg-[#e85b75]'
+                        }`}
+                    >
+                        <GoHeart 
+                            size={18} 
+                            style={{ strokeWidth: 1 }}
+                            className={inWishlist ? 'fill-white' : ''}
+                        />
+                        {inWishlist ? 'REMOVE FROM WISHLIST' : 'ADD TO WISHLIST'}
                     </button>
                 </div>
             </div>

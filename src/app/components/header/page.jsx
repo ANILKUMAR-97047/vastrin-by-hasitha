@@ -6,10 +6,15 @@ import { usePathname } from 'next/navigation';
 import { IoSearchOutline } from "react-icons/io5";
 import { GoHeart } from "react-icons/go";
 import { PiHandbagSimpleLight } from "react-icons/pi";
+import { useWishlist } from '@/app/context/WishlistContext';
+import { useCart } from '@/app/context/CartContext';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
+    const { wishlist } = useWishlist();
+    const { getCartCount } = useCart();
+    const cartCount = getCartCount();
 
     const navLinks = [
         { name: "Home", href: "/" },
@@ -66,8 +71,22 @@ export default function Header() {
                             />
                             </Link>
                             <IoSearchOutline className='text-[#DBA622]' size={24} />
-                            <GoHeart className='text-[#DBA622]' size={24} />
-                            <Link href="/components/cart"><PiHandbagSimpleLight className='text-[#DBA622] ' size={24} /></Link>
+                            <Link href="/wishlist" className="relative hover:opacity-80 transition-opacity">
+                                <GoHeart className='text-[#DBA622]' size={24} />
+                                {wishlist.length > 0 && (
+                                    <span className="absolute -top-2 -right-2 bg-[#FC6C85] text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                                        {wishlist.length}
+                                    </span>
+                                )}
+                            </Link>
+                            <Link href="/components/cart" className="relative hover:opacity-80 transition-opacity">
+                                <PiHandbagSimpleLight className='text-[#DBA622]' size={24} />
+                                {cartCount > 0 && (
+                                    <span className="absolute -top-2 -right-2 bg-[#FC6C85] text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                                        {cartCount}
+                                    </span>
+                                )}
+                            </Link>
                             <Link href="/components/auth/login"><p className='text-[#DBA622] ml-4 lg:text-[16px] font-semibold cursor-pointer'>Login</p></Link>
                         </div>
 
@@ -121,15 +140,30 @@ export default function Header() {
 
                     {/* Render icons inside mobile menu ONLY for small mobile devices (since we show them on tablet header) */}
                     <div className='flex gap-3 ml-7 mb-5' >
-                        <img
-                            className="w-[24px] h-[24px] object-fill rounded-full cursor-pointer hover:opacity-80 transition-opacity"
-                            src="/images/logos/profile.png"
-                            alt="User Profile"
-                        />
+                        <Link href="/profile">
+                            <img
+                                className="w-[24px] h-[24px] object-fill rounded-full cursor-pointer hover:opacity-80 transition-opacity"
+                                src="/images/logos/profile.png"
+                                alt="User Profile"
+                            />
+                        </Link>
                         <IoSearchOutline className='text-[#DBA622]' size={24} />
-                        <GoHeart className='text-[#DBA622]' size={24} />
-                        <PiHandbagSimpleLight className='text-[#DBA622]' size={24} />
-
+                        <Link href="/wishlist" className="relative hover:opacity-80 transition-opacity">
+                            <GoHeart className='text-[#DBA622]' size={24} />
+                            {wishlist.length > 0 && (
+                                <span className="absolute -top-2 -right-2 bg-[#FC6C85] text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                                    {wishlist.length}
+                                </span>
+                            )}
+                        </Link>
+                        <Link href="/components/cart" className="relative hover:opacity-80 transition-opacity">
+                            <PiHandbagSimpleLight className='text-[#DBA622]' size={24} />
+                            {cartCount > 0 && (
+                                <span className="absolute -top-2 -right-2 bg-[#FC6C85] text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                                    {cartCount}
+                                </span>
+                            )}
+                        </Link>
                     </div>
 
                 </div>

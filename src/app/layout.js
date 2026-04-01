@@ -11,6 +11,8 @@ import Header from "./components/header/page";
 import Footer from "./components/footer/page";
 import SubFooter from "./components/subfooter/page";
 import WhatsAppButton from "./components/shared/WhatsAppButton";
+import { WishlistProvider } from "./context/WishlistContext";
+import { CartProvider } from "./context/CartContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -66,15 +68,19 @@ export default function RootLayout({ children }) {
           ${archivo.variable}
           min-h-full flex flex-col
         `}>
-        <Header />
-        <main className="flex-1 flex flex-col">
-          <Toaster position="top-right" />
+        <WishlistProvider>
+          <CartProvider>
+            <Header />
+            <main className="flex-1 flex flex-col">
+              <Toaster position="top-right" />
 
-          {children}
-        </main>
-        <SubFooter />
-        <Footer />
-        <WhatsAppButton />
+              {children}
+            </main>
+            <SubFooter />
+            <Footer />
+            <WhatsAppButton />
+          </CartProvider>
+        </WishlistProvider>
       </body>
     </html>
   );
