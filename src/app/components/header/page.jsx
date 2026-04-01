@@ -26,7 +26,7 @@ export default function Header() {
     ];
 
     return (
-        <header className="w-full bg-white shadow-sm sticky top-0 z-50">
+        <header className="w-full bg-white shadow-sm sticky top-0 z-50 relative">
             <div className="w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
 
@@ -118,7 +118,13 @@ export default function Header() {
 
             {/* Mobile & Tablet Dropdown Menu */}
             {isMenuOpen && (
-                <div className="lg:hidden bg-white border-t border-gray-100 shadow-md absolute w-full left-0 z-40">
+                <>
+                    {/* Backdrop */}
+                    <div 
+                        className="fixed inset-0 top-20 bg-black/20 lg:hidden z-40"
+                        onClick={() => setIsMenuOpen(false)}
+                    />
+                    <div className="fixed inset-x-0 top-20 bg-white border-t border-gray-100 shadow-lg lg:hidden z-50 max-h-96 overflow-y-auto">
                     <div className="px-4 pt-2 pb-3 space-y-1 sm:px-6">
                         {navLinks.map((link) => {
                             const isActive = pathname === link.href;
@@ -166,7 +172,8 @@ export default function Header() {
                         </Link>
                     </div>
 
-                </div>
+                    </div>
+                </>
             )}
         </header>
     );

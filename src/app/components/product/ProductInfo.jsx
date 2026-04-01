@@ -122,16 +122,16 @@ export default function ProductInfo({ product }) {
                 <div className="flex flex-col gap-3 max-w-[400px]">
                     <button 
                         onClick={handleAddToCart}
-                        className="w-full py-3.5 border border-[#FC6C85] text-[#FC6C85] hover:bg-[#ffeef1] font-bold text-sm tracking-widest transition"
+                        className="w-full py-3.5 border border-[#FC6C85] text-[#FC6C85] hover:bg-[#ffeef1] font-bold text-sm tracking-widest transition cursor-pointer"
                     >
                         ADD TO CART
                     </button>
-                    <button className="w-full py-3.5 bg-[#FC6C85] text-white hover:bg-[#e85b75] font-bold text-sm tracking-widest transition">
+                    <button className="w-full py-3.5 bg-[#FC6C85] text-white hover:bg-[#e85b75] font-bold text-sm tracking-widest transition cursor-pointer">
                         BUY IT NOW
                     </button>
                     <button 
                         onClick={handleAddToWishlist}
-                        className={`w-full py-3.5 font-bold text-sm tracking-widest transition flex items-center justify-center gap-2 ${
+                        className={`cursor-pointer w-full py-3.5 font-bold text-sm tracking-widest transition flex items-center justify-center gap-2 ${
                             inWishlist
                                 ? 'bg-[#FC6C85] text-white hover:bg-[#e85b75]'
                                 : 'bg-[#FC6C85] text-white hover:bg-[#e85b75]'
