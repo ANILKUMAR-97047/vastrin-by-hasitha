@@ -16,3 +16,5 @@ export const sendOtpMail = async (email, otp) => {
     html: `<h2>Your OTP is: ${otp}</h2>`,
   });
 };
+
+// This file sets up the nodemailer transporter and defines a function to send OTP emails.

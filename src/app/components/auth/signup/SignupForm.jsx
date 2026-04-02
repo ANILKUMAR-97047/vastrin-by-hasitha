@@ -102,7 +102,7 @@ const Signup = () => {
       }
 
       toast.success("Signup Successful!");
-      router.push('/components/auth/login');
+      router.push('/'); // Redirect to homepage or dashboard after successful signup
     } catch (error) {
       toast.error(error.message);
     } finally {

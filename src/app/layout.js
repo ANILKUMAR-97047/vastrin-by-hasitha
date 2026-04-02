@@ -1,8 +1,10 @@
 import {
-  Geist, Geist_Mono, Inknut_Antiqua,
+  Geist,
+  Geist_Mono,
+  Inknut_Antiqua,
   Inria_Serif,
   Inika,
-  Archivo
+  Archivo,
 } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 
@@ -13,6 +15,7 @@ import SubFooter from "./components/subfooter/page";
 import WhatsAppButton from "./components/shared/WhatsAppButton";
 import { WishlistProvider } from "./context/WishlistContext";
 import { CartProvider } from "./context/CartContext";
+import { AuthProvider } from "./context/AuthContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,29 +28,28 @@ const geistMono = Geist_Mono({
 });
 
 const inknut = Inknut_Antiqua({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-inknut',
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inknut",
 });
 
 const inria = Inria_Serif({
-  subsets: ['latin'],
-  weight: ['300', '400', '700'],
-  variable: '--font-inria',
+  subsets: ["latin"],
+  weight: ["300", "400", "700"],
+  variable: "--font-inria",
 });
 
 const inika = Inika({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-inika',
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-inika",
 });
 
 const archivo = Archivo({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-archivo',
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-archivo",
 });
-
 
 export const metadata = {
   title: "Vastrin By Hasitha",
@@ -55,7 +57,7 @@ export const metadata = {
 };
 
 export const viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
   maximumScale: 1,
 };
@@ -67,14 +69,16 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       {/* className="min-h-full flex flex-col" */}
-      <body className={`
+      <body
+        className={`
           ${inknut.variable} 
           ${inria.variable} 
           ${inika.variable} 
           ${archivo.variable}
           min-h-full flex flex-col
-        `}>
-      
+        `}
+      >
+        <AuthProvider>
           <WishlistProvider>
             <CartProvider>
               <Header />
@@ -88,7 +92,7 @@ export default function RootLayout({ children }) {
               <WhatsAppButton />
             </CartProvider>
           </WishlistProvider>
-       
+        </AuthProvider>
       </body>
     </html>
   );

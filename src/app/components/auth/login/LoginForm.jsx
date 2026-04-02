@@ -1,9 +1,11 @@
 'use client';
+import { useAuth } from "@/app/context/AuthContext";
 
 import Link from 'next/link';
 import React, { useState, useRef } from 'react';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+    
 const LOGIN_BG_URL = '/images/auth/loginbg.png';
 
 const Login = () => {
@@ -14,7 +16,7 @@ const Login = () => {
     // Separated loading states
     const [isVerifyingEmail, setIsVerifyingEmail] = useState(false);
     const [isLoggingIn, setIsLoggingIn] = useState(false);
-
+    const {fetchUser} = useAuth();
     const otpRefs = useRef([]);
 
     // Email Validation Helper
@@ -82,10 +84,11 @@ const Login = () => {
         const data = await res.json();
 
         if (!res.ok) throw new Error(data.message);
-
+        await fetchUser(); // Refresh user context after login
         toast.success("Login successful");
 
         // 👉 redirect after login
+
         router.push('/');
 
     } catch (error) {

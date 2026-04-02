@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import User from "@/models/User";
 import Otp from "@/models/Otp";
+import jwt from "jsonwebtoken";
+import { cookies } from "next/headers";
 
 export async function POST(req) {
   try {
@@ -25,16 +27,26 @@ export async function POST(req) {
       return NextResponse.json({ message: "OTP expired" }, { status: 400 });
     }
 
+    // Generate JWT
+    const token = jwt.sign(
+      { userId: user._id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "2m" }
+    );
+console.log("Generated JWT:", token);
+    const cookieStore = await cookies();
+
+    cookieStore.set("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+    });
+
     await Otp.deleteMany({ email });
 
-    return NextResponse.json({
-      message: "Login successful",
-      user,
-    });
+    return NextResponse.json({ message: "Login successful" });
+
   } catch (error) {
-    return NextResponse.json(
-      { message: "Login failed" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "Login failed" }, { status: 500 });
   }
 }
