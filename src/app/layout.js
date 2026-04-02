@@ -74,19 +74,21 @@ export default function RootLayout({ children }) {
           ${archivo.variable}
           min-h-full flex flex-col
         `}>
-        <WishlistProvider>
-          <CartProvider>
-            <Header />
-            <main className="flex-1 flex flex-col">
-              <Toaster position="top-right" />
+      
+          <WishlistProvider>
+            <CartProvider>
+              <Header />
+              <main className="flex-1 flex flex-col">
+                <Toaster position="top-right" />
 
-              {children}
-            </main>
-            <SubFooter />
-            <Footer />
-            <WhatsAppButton />
-          </CartProvider>
-        </WishlistProvider>
+                {children}
+              </main>
+              <SubFooter />
+              <Footer />
+              <WhatsAppButton />
+            </CartProvider>
+          </WishlistProvider>
+       
       </body>
     </html>
   );
