@@ -127,7 +127,7 @@ export async function POST(req) {
         email: user.email,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "2m" },
+      { expiresIn: "7d" },
     );
 
     //  5. Set cookie (AUTO LOGIN)
@@ -138,10 +138,10 @@ export async function POST(req) {
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
       path: "/",
-      maxAge: 60 * 2, // 2 minutes
-      
+      maxAge: 60 * 60 * 24 * 7, // 7 days
     });
-//maxAge: 60 * 60 * 24 * 7, // 7 days
+
+    
     // 6. Cleanup OTP
     await Otp.deleteMany({ email });
 

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IoSearchOutline } from "react-icons/io5";
@@ -15,12 +14,26 @@ import { useAuth } from "@/app/context/AuthContext";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
-const { user, loading } = useAuth();
-
+  const { user, loading } = useAuth();
   const pathname = usePathname();
   const { wishlist } = useWishlist();
   const { getCartCount } = useCart();
   const cartCount = getCartCount();
+
+  // --- ADDED FIX FOR SCROLLING ---
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    // Cleanup to ensure scroll is restored if component unmounts
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMenuOpen]);
+  // -------------------------------
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -33,38 +46,15 @@ const { user, loading } = useAuth();
 
   const handleProtectedRoute = async (path) => {
     const res = await fetch("/api/auth/me");
-
     if (!res.ok) {
       router.push("/login");
       return;
     }
-
     router.push(path);
   };
 
-//   useEffect(() => {
-//     const checkAuth = async () => {
-//       try {
-//         const res = await fetch("/api/auth/me");
-
-//         if (!res.ok) {
-//           setUser(null);
-//         } else {
-//           const data = await res.json();
-//           setUser(data.user);
-//         }
-//       } catch (error) {
-//         setUser(null);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     checkAuth();
-//   }, []);
-
   return (
-    <header className="w-full bg-white shadow-sm sticky top-0 z-50 relative">
+    <header className="w-full bg-white shadow-sm sticky top-0 z-50">
       <div className="w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
@@ -96,22 +86,14 @@ const { user, loading } = useAuth();
             })}
           </nav>
 
-          {/* Right Icons (Desktop & Tablet) */}
-          <div className="hidden md:flex items-center space-x-5 lg:space-x-6">
-            {/* Tote/Bag Placeholder Icon */}
-            <div className="flex gap-3">
-              {/* <Link href="/profile">
-                <img
-                  className="w-[24px] h-[24px] object-fill rounded-full cursor-pointer hover:opacity-80 transition-opacity"
-                  src="/images/logos/profile.png"
-                  alt="User Profile"
-                />
-              </Link> */}
+          {/* Right Icons (Desktop ONLY - lg and up) */}
+          <div className="hidden lg:flex items-center space-x-5 lg:space-x-6">
+            <div className="flex gap-3 items-center">
               <IoSearchOutline className="text-[#DBA622]" size={24} />
 
-              {/* <Link
-                href="/components/wishlist"
-                className="relative hover:opacity-80 transition-opacity"
+              <button
+                onClick={() => handleProtectedRoute("/wishlist")}
+                className="relative cursor-pointer"
               >
                 <GoHeart className="text-[#DBA622]" size={24} />
                 {wishlist.length > 0 && (
@@ -119,17 +101,11 @@ const { user, loading } = useAuth();
                     {wishlist.length}
                   </span>
                 )}
-              </Link> */}
-              <button
-                onClick={() => handleProtectedRoute("/wishlist")}
-                className="relative cursor-pointer"
-              >
-                <GoHeart className="text-[#DBA622]" size={24} />
               </button>
 
-              {/* <Link
-                href="/components/cart"
-                className="relative hover:opacity-80 transition-opacity"
+              <button
+                onClick={() => handleProtectedRoute("/cart")}
+                className="relative cursor-pointer"
               >
                 <PiHandbagSimpleLight className="text-[#DBA622]" size={24} />
                 {cartCount > 0 && (
@@ -137,12 +113,6 @@ const { user, loading } = useAuth();
                     {cartCount}
                   </span>
                 )}
-              </Link> */}
-              <button
-                onClick={() => handleProtectedRoute("/cart")}
-                className="relative cursor-pointer"
-              >
-                <PiHandbagSimpleLight className="text-[#DBA622]" size={24} />
               </button>
 
               {!loading && (
@@ -168,46 +138,20 @@ const { user, loading } = useAuth();
             </div>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile menu button (Shown on Mobile & Tablet) */}
           <div className="flex justify-center items-center lg:hidden">
-            {/* On tablet we still show icons, so let's separate hamburger slightly */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-yellow-500 hover:text-rose-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-rose-400 ml-4 md:ml-0"
+              className="inline-flex items-center justify-center p-2 rounded-md text-yellow-500 hover:text-rose-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-rose-400"
             >
               <span className="sr-only">Open main menu</span>
-              {/* Hamburger Toggle */}
               {isMenuOpen ? (
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
+                <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               ) : (
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
+                <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               )}
             </button>
@@ -218,7 +162,6 @@ const { user, loading } = useAuth();
       {/* Mobile & Tablet Dropdown Menu */}
       {isMenuOpen && (
         <>
-          {/* Backdrop */}
           <div
             className="fixed inset-0 top-20 bg-black/20 lg:hidden z-40"
             onClick={() => setIsMenuOpen(false)}
@@ -234,7 +177,7 @@ const { user, loading } = useAuth();
                     onClick={() => setIsMenuOpen(false)}
                     className={`block px-3 py-2.5 rounded-md font-['Inknut_Antiqua'] text-[17px] tracking-[-0.6px] ${
                       isActive
-                        ? "text-[#FC6C85] font-semibold underline decoration-solid [text-underline-position:from-font] bg-gray-50"
+                        ? "text-[#FC6C85] font-semibold underline bg-gray-50"
                         : "text-[#DBA622] font-normal hover:bg-gray-50 hover:text-[#FC6C85]"
                     }`}
                   >
@@ -244,20 +187,21 @@ const { user, loading } = useAuth();
               })}
             </div>
 
-            {/* Render icons inside mobile menu ONLY for small mobile devices (since we show them on tablet header) */}
-            <div className="flex gap-3 ml-7 mb-5">
-              <Link href="/profile">
-                <img
-                  className="w-[24px] h-[24px] object-fill rounded-full cursor-pointer hover:opacity-80 transition-opacity"
-                  src="/images/logos/profile.png"
-                  alt="User Profile"
-                />
-              </Link>
+            {/* Bottom Icons (Visible for both Tablet and Mobile inside the menu) */}
+            <div className="flex gap-4 ml-7 mb-6 mt-2 items-center">
+              {!loading && user && (
+                <Link href="/profile">
+                  <img
+                    className="w-[24px] h-[24px] object-fill rounded-full cursor-pointer"
+                    src="/images/logos/profile.png"
+                    alt="User Profile"
+                  />
+                </Link>
+              )}
+              
               <IoSearchOutline className="text-[#DBA622]" size={24} />
-              <Link
-                href="/wishlist"
-                className="relative hover:opacity-80 transition-opacity"
-              >
+              
+              <Link href="/wishlist" className="relative">
                 <GoHeart className="text-[#DBA622]" size={24} />
                 {wishlist.length > 0 && (
                   <span className="absolute -top-2 -right-2 bg-[#FC6C85] text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
@@ -265,10 +209,8 @@ const { user, loading } = useAuth();
                   </span>
                 )}
               </Link>
-              <Link
-                href="/cart"
-                className="relative hover:opacity-80 transition-opacity"
-              >
+
+              <Link href="/cart" className="relative">
                 <PiHandbagSimpleLight className="text-[#DBA622]" size={24} />
                 {cartCount > 0 && (
                   <span className="absolute -top-2 -right-2 bg-[#FC6C85] text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
@@ -276,6 +218,15 @@ const { user, loading } = useAuth();
                   </span>
                 )}
               </Link>
+              
+              {!loading && !user && (
+                <button
+                  onClick={() => router.push("/login")}
+                  className="text-[#DBA622] font-semibold"
+                >
+                  Login
+                </button>
+              )}
             </div>
           </div>
         </>
