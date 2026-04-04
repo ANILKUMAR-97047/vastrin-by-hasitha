@@ -60,6 +60,17 @@ const Signup = () => {
     }
   };
 
+  const handlePaste = (e) => {
+    const pasteData = e.clipboardData.getData('text').trim();
+
+    if (!/^\d{6}$/.test(pasteData)) return;
+
+    const newOtp = pasteData.split('');
+    setOtp(newOtp);
+
+    otpRefs.current[5]?.focus();
+};
+
   // 2. Backend API: Create Account / Verify & Signup
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
@@ -190,6 +201,7 @@ const Signup = () => {
                 ref={(el) => (otpRefs.current[index] = el)}
                 onChange={(e) => handleOtpChange(e.target, index)}
                 onKeyDown={(e) => handleKeyDown(e, index)}
+                onPaste={handlePaste}
                 className="w-9 h-9 md:w-10 md:h-10 text-center text-lg font-bold bg-white border border-gray-200 rounded-sm focus:outline-none focus:border-gray-400"
               />
             ))}

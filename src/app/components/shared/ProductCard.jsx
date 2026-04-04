@@ -43,15 +43,17 @@ export default function ProductCard({ product }) {
 
           {/* Wishlist Icon */}
           <button
-            className="absolute top-3 right-3 p-1.5 z-10 bg-transparent cursor-pointer hover:scale-110 transition-transform"
+            className="absolute top-3 right-3 p-1.5 z-10 cursor-pointer flex items-center justify-center bg-white rounded-full"
             onClick={handleWishlistClick}
           >
-            <GoHeart
-              size={22}
-              className={`font-bold drop-shadow-sm transition-all ${
-                inWishlist ? "fill-[#FC6C85] text-[#FC6C85]" : "text-gray-800"
-              }`}
-              style={{ strokeWidth: 1 }}
+            <img
+              src={
+                inWishlist
+                  ? "/images/wishlist-logo/heartFill.svg"
+                  : "/images/wishlist-logo/heart.svg"
+              }
+              alt="Wishlist Icon"
+              className="w-4 h-4 transition-all"
             />
           </button>
         </div>
